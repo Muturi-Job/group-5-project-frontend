@@ -1,8 +1,11 @@
 import React from "react";
+import '../App.css'
+
 
 function HomePage () {
 return(
-    <div>Home</div>
+    
+ <div className="container"></div>
 )
 }
 export default HomePage;

@@ -8,7 +8,7 @@ function Login({ onLogin }) {
   
     return (
       <Wrapper>
-        <Logo>Recipe App</Logo>
+        <Logo></Logo>
         {showLogin ? (
           <>
             <LoginForm onLogin={onLogin} />
