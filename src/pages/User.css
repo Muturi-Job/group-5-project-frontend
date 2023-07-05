@@ -1,0 +1,29 @@
+/* User.css */
+
+.user-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.user-form-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.user-form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #390e0e;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.user-form-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
