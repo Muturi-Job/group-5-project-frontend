@@ -35,7 +35,7 @@ function App() {
       <Route path='chefs' element={<Users/>}></Route>
     </Routes>
     {/* <Login/> */}
-    <HomePage/>
+    
       
     </>
   )
