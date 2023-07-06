@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './User.css';
+
 const UserForm = () => {
   const [formData, setFormData] = useState({
     image: '',
@@ -15,37 +16,39 @@ const UserForm = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      // Form submission successful, reset form data
-      setFormData({
-        image: '',
-        location: '',
-        bio: '',
-        contact: '',
-        username: '',
-        password: '',
+    try {
+      const response = await fetch('https://group-5-back.onrender.com/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      // Handle form submission error
-      console.error('Form submission failed');
-    }
-  } catch (error) {
-    // Handle fetch error
-    console.error('Error sending form data', error);
-  }
-};
 
+      if (response.ok) {
+        const user = await response.json();
+        // Form submission successful, reset form data
+        setFormData({
+          image: '',
+          location: '',
+          bio: '',
+          contact: '',
+          username: '',
+          password: '',
+        });
+        console.log('User created:', user);
+      } else {
+        // Handle form submission error
+        const errorData = await response.json();
+        console.error('Form submission failed:', errorData.errors);
+      }
+    } catch (error) {
+      // Handle fetch error
+      console.error('Error sending form data:', error);
+    }
+  };
 
   return (
     <div>
