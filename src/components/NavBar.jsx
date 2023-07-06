@@ -6,18 +6,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import HomePage from "../pages/HomePage";
 import Recipes from "../pages/Recipes";
 
-function NavBar() {
+function NavBar({ user, setUser }) {
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
-            <Navbar.Brand href="#home">Culinary Experience</Navbar.Brand>
+            <Navbar.Brand className="navbar-brand"><Link to='/home'  element ={<HomePage/>} >Culinary Experience</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/" element ={<HomePage/>}>Home</Nav.Link>
-                <Nav.Link href="recipes" element={<Recipes/>}>Recipes</Nav.Link>
-                <Nav.Link href="users">Users</Nav.Link>
+                <Link to="home" className='nav-link' element ={<HomePage/>}>Home</Link>
+                <Link to="recipes" className='nav-link' element={<Recipes/>}>Recipes</Link>
+                <Link to="users" className='nav-link'>Users</Link>
+                <button variant="outline" onClick={handleLogoutClick} className="logout-btn">Logout</button>
               </Nav>
             </Navbar.Collapse>
           </Container>
