@@ -28,9 +28,10 @@ function App() {
   return (
     <>
 
-      <NavBar/>
+      <NavBar user={user} setUser={setUser}/>
       <Routes>
-      <Route path='/' element={<HomePage />}></Route>
+      <Route path='/' element={<Login />}></Route>
+      <Route path='/home' element={<HomePage />}></Route>
       <Route path='recipes' element={<Recipes />}></Route>
       <Route path='users' element={<Users/>}></Route>
     </Routes>
