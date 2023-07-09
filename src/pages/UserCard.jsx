@@ -1,17 +1,14 @@
 import React from 'react';
-import './User.css';
+import './UserCard.css';
 
 const UserCard = ({ username, bio, location, image }) => {
   return (
-    <div>
-      <h2>User Card</h2>
-      <div className="card">
-        <img src={image} alt={username} />
-        <div>
-          <h3>{username}</h3>
-          <p>Bio: {bio}</p>
-          <p>Location: {location}</p>
-        </div>
+    <div className="card">
+      <img src={image} alt={username} />
+      <div className="card-content">
+        <h3 className="title">{username}</h3>
+        <p className="copy">Bio: {bio}</p>
+        <p className="copy">Location: {location}</p>
       </div>
     </div>
   );
