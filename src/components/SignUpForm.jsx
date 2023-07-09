@@ -33,6 +33,14 @@ function SignUpForm({ onLogin }) {
         setIsLoading(false);
         if (r.ok) {
           r.json().then((user) => console.log(user));//onLogin(user));
+          onLogin(user);
+          setUsername("");
+          setPassword("");
+          setPasswordConfirmation("");
+          setImage("");
+          setContact("");
+          setBio("");
+          setLocation("");
           navigate('/home');
         } else {
           throw new Error("Sign Up Failed!");

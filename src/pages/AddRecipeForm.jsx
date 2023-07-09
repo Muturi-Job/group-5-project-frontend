@@ -1,4 +1,4 @@
-import './AddRecipeForm.css'
+import './Recipes.css'
 
 // const AddRecipeForm = () => {
 //     function handleSubmit(event){
@@ -63,7 +63,7 @@ const AddRecipeForm = () => {
       user_id: user_id
     };
 
-    fetch('http://localhost:3000/recipes', {
+    fetch('https://group-5-back.onrender.com/recipes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

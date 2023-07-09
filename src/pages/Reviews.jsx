@@ -9,7 +9,7 @@ function Reviews() {
   const [userId, setUserId] = useState(""); // Assuming the user ID will be fetched from the active session
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("https://group-5-back.onrender.com/reviews")
       .then((response) => response.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
@@ -27,7 +27,7 @@ function Reviews() {
     };
 
     // Send a POST request to the server
-    fetch("http://localhost:3000/reviews", {
+    fetch("https://group-5-back.onrender.com/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

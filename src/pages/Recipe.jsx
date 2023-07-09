@@ -10,7 +10,7 @@ function Recipe () {
     const params = useParams()
   
     useEffect(() => {
-      fetch(`http://localhost:3000/recipes/${params.id}}`)
+      fetch(`https://group-5-back.onrender.com/recipes/${params.id}}`)
       .then(res => res.json())
       .then(data => setRecipe(data))
   

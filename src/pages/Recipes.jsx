@@ -11,7 +11,7 @@ function Recipes () {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch('http://localhost:3000/recipes')
+        fetch('https://group-5-back.onrender.com/recipes')
         .then(res => res.json())
         .then(data => setRecipes(data))
         
