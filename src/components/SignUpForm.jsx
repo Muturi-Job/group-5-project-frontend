@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import Error from "../styles/Error";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm({ onLogin }) {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [image, setImage] = useState("");
     const [contact, setContact] = useState([""])
-   
+    const [bio, setBio] = useState('')
+    const [location, setLocation] = useState('')
     const [isLoading, setIsLoading] = useState(false);
   
     function handleSubmit(e) {
       e.preventDefault();
-      setErrors([]);
       setIsLoading(true);
-      fetch("/signup", {
+      fetch("https://group-5-back.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,17 +24,22 @@ function SignUpForm({ onLogin }) {
           username,
           password,
           password_confirmation: passwordConfirmation,
-          image: imageUrl,
-          contact: contact,
-          
+          image,
+          contact,
+          bio,
+          location          
         }),
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => onLogin(user));
+          r.json().then((user) => console.log(user));//onLogin(user));
+          navigate('/home');
         } else {
-          r.json().then((err) => setErrors(err.errors));
+          throw new Error("Sign Up Failed!");
         }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
       });
     }
 
@@ -96,8 +101,8 @@ function SignUpForm({ onLogin }) {
     id="imageUrl" 
     className="inputField" 
     type="text"
-    value={imageUrl}
-    onChange={(e) => setImageUrl(e.target.value)}
+    value={image}
+    onChange={(e) => setImage(e.target.value)}
     />
 </div>
 
@@ -118,14 +123,43 @@ function SignUpForm({ onLogin }) {
     />
 </div>
 
+<p>Location</p>
+    <div className="inputContainer">
+        <svg viewBox="0 0 384 512" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" className="inputIcon">
+       <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+       </svg>  
+    <input 
+    placeholder="Enter residential location" 
+    id="location" 
+    className="inputField"
+    autoComplete="off"
+    value={location}
+    onChange={(e) => setLocation(e.target.value)}
+     type="text"
+     />
+    </div>
+
+    <p>Bio</p>
+    <div className="inputContainer">
+        <svg viewBox="0 0 512 512" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" className="inputIcon">
+        <path d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/>
+        </svg>
+    <input 
+    placeholder="Must be at least 50 characters" 
+    id="bio" 
+    className="inputField"
+    autoComplete="off"
+    value={bio}
+    onChange={(e) => setBio(e.target.value)}
+     type="text"
+     />
+    </div>
 
            
 <button id="button" type="submit">
 {isLoading ? "Loading..." : "Sign Up"}  </button>
    
-    {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
+
         </form>
       )
         
