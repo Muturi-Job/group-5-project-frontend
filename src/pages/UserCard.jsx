@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserCard.css';
+import './User.css';
 
 const UserCard = ({ username, bio, location, image }) => {
   return (
