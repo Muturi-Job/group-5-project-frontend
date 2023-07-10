@@ -53,7 +53,7 @@ function Reviews() {
                   {/* User Profile Section */}
                   <div className="profile">
                     <div className="profile-image">
-                      <img src={review.user.image} alt="Profile" />
+                      <img className='profile-image-img' src={review.user.image} alt="Profile" />
                     </div>
 
                     <div className="name-user">

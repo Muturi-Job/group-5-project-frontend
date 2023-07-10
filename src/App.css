@@ -325,7 +325,6 @@
   .profile-image {
     width: 15vh;
     height: auto;
-    /* border-radius: 50%; */
     overflow: hidden;
     margin-right: 10px;
     align-items: flex-start;
@@ -563,4 +562,9 @@
 	width: 100px;
 	border-radius: 100%;
 	border: 5px solid #fff;
+}
+.profile-image-img{
+  width: 1vw;
+  height: auto;
+  border-radius: 25%;
 }
