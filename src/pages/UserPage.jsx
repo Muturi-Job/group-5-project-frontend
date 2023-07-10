@@ -4,7 +4,6 @@ import UserCard from './UserCard';
 import './User.css';
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -25,14 +24,10 @@ const UserPage = () => {
     }
   };
 
-  const handleFormSubmit = (userData) => {
-    setUser(userData);
-  };
-
   return (
     <div>
       <h1>User Page</h1>
-      <UserForm onFormSubmit={handleFormSubmit} />
+      <UserForm />
       <div className="page-content">
         {users.map((user) => (
           <UserCard
