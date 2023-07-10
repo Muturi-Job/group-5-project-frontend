@@ -22,6 +22,7 @@ function LoginForm ({onLogin}) {
         setIsLoading(false);
         if (r.ok) {
           r.json().then((user) => onLogin(user));
+          localStorage.setItem("user", JSON.stringify(user));
           navigate('/home');
         } else {
           throw new Error("Login failed!");

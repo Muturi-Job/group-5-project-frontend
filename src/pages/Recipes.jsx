@@ -17,11 +17,13 @@ function Recipes() {
     fetch(`https://group-5-back.onrender.com/recipes/${recipeId}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then((data) => {
+     .then((data) => {
         if (data.success) {
           setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
         }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
       });
   };
 
