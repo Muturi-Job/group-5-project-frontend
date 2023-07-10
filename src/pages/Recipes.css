@@ -57,6 +57,39 @@
     color: white;
     position: absolute;
     bottom: 50px;
-    right: 30px;
+    right: 10px;
     cursor: pointer;
+}
+.delete-button{
+    padding: 8px 40px;
+    border: none;
+    background-color: goldenrod;
+    color: white;
+    bottom: 50px;
+    left: 10px;
+    cursor: pointer;
+    position: absolute;
+    
+}
+.add-recipe-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-recipe-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.add{
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: goldenrod;
 }

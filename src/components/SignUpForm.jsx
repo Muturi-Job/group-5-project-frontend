@@ -32,8 +32,8 @@ function SignUpForm({ onLogin }) {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => console.log(user));//onLogin(user));
-          onLogin(user);
+          r.json().then((user) => onLogin(user));//onLogin(user));
+          
           setUsername("");
           setPassword("");
           setPasswordConfirmation("");

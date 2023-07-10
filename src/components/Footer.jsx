@@ -46,10 +46,9 @@ function Footer() {
                   </a>
                 </div>
                 <div className="footer-text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec
-                    tetur adipisicing elit, Lorem ipsum dolor sit amet.
-                  </p>
+                <p>
+                Elevate your cooking skills with detailed recipes and gain insights on top-rated kitchen tools and food items. 
+                </p>
                 </div>
                 <div className="footer-social-icon">
                   <span>Follow us</span>

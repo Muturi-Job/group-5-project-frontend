@@ -28,6 +28,14 @@ const UserProfile = ({ user }) => {
     user.bio = bio;
   };
 
+  const handleLogoutClick = () => {
+    fetch("https://group-5-back.onrender.com/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    })
+  };
+
   return (
     <section className="py-5 my-5">
       <div className="container">
@@ -165,6 +173,9 @@ const UserProfile = ({ user }) => {
                     Edit
                   </button>
                 )}
+                  <button className="btn" onClick={handleLogoutClick}>
+                  Logout
+                </button>
               </div>
             </div>
           </div>
