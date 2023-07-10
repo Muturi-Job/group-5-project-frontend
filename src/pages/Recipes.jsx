@@ -1,22 +1,22 @@
 import React from "react";
 import { useEffect, useState } from "react"
 import "./Recipes.css"
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import AddRecipeForm from "./AddRecipeForm";
 
 
-function Recipes () {
+function Recipes() {
 
     const [recipes, setRecipes] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
         fetch('https://group-5-back.onrender.com/recipes')
-        .then(res => res.json())
-        .then(data => setRecipes(data))
-        
+            .then(res => res.json())
+            .then(data => setRecipes(data))
+
     }
-    , [])
+        , [])
 
 
     return (
@@ -24,8 +24,8 @@ function Recipes () {
             <div>
                 <h1>RECIPES 🥘</h1>
             </div>
-            
-            <AddRecipeForm/>
+
+            <AddRecipeForm recipes={recipes} setRecipes={setRecipes} />
 
             <div className="search-bar">
                 <input type="text" className="search-input" placeholder='input value'></input>
@@ -36,11 +36,18 @@ function Recipes () {
                 {recipes.map(recipe => (
                     <div className="recipe-box" key={recipe.id}>
                         <span>{recipe.title}</span>
-                        <img src={recipe.image_url} alt={recipe.title} className="recipe-img"/>
-                        
-                        <button className="button" onClick={() => navigate(`/recipes/${recipe.id}`)}>VIEW</button>
+                        <img src={recipe.image_url} alt={recipe.title} className="recipe-img" />
 
-                        
+                        <button className="button" onClick={() => navigate(`/recipes/${recipe.id}`)}>VIEW</button>
+                        <button className='delete' onClick={() => {
+                            fetch(`https://group-5-back.onrender.com/${recipe.id}`, {
+                                method: 'DELETE',
+                            })
+                                .then(res => res.json())
+                                .then(data => console.log(data))
+
+                        }}>DELETE</button>
+
                     </div>
                 ))}
 

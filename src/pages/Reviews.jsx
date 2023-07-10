@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
+import AddReviewForm from '../components/AddReviewForm'
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [rating, setRating] = useState("");
-  const [description, setDescription] = useState("");
-  const [recipeId, setRecipeId] = useState("");
-  const [userId, setUserId] = useState(""); // Assuming the user ID will be fetched from the active session
+
 
   useEffect(() => {
     fetch("https://group-5-back.onrender.com/reviews")
@@ -15,37 +13,8 @@ function Reviews() {
       .catch((error) => console.log(error));
   }, []);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    // Create a new testimonial object
-    const newTestimonial = {
-      rating: parseFloat(rating),
-      description,
-      recipe_id: parseInt(recipeId),
-      user_id: parseInt(userId),
-    };
-
-    // Send a POST request to the server
-    fetch("https://group-5-back.onrender.com/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTestimonial),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Add the new testimonial to the reviews state
-        setReviews([data, ...reviews]);
-        // Reset the form fields
-        setRating("");
-        setDescription("");
-        setRecipeId("");
-        // Close the form
-        setShowForm(false);
-      })
-      .catch((error) => console.log(error));
+  const handlNewTestimonialClick = () => {
+    setShowForm(!showForm)
   };
 
   return (
@@ -65,50 +34,12 @@ function Reviews() {
           <div className="col-12">
             <div className="testimonial-form">
               <button
-                className="btn btn-primary"
-                onClick={() => setShowForm(!showForm)}
+                className="btn btn"
+                onClick={handlNewTestimonialClick}
               >
                 New Testimonial
               </button>
-              {showForm && (
-                <form onSubmit={handleFormSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="rating">Rating:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="rating"
-                      value={rating}
-                      onChange={(e) => setRating(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea
-                      className="form-control"
-                      id="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      required
-                    ></textarea>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="recipeId">Recipe ID:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="recipeId"
-                      value={recipeId}
-                      onChange={(e) => setRecipeId(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary">
-                    Submit
-                  </button>
-                </form>
-              )}
+              {showForm && <AddReviewForm  reviews={reviews} setReviews={setReviews}/>}
             </div>
           </div>
         </div>

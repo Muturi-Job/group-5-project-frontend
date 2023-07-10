@@ -1,3 +1,4 @@
+import Recipes from './Recipes';
 import './Recipes.css'
 
 // const AddRecipeForm = () => {
@@ -45,7 +46,7 @@ import './Recipes.css'
 
 import React, { useState } from 'react';
 
-const AddRecipeForm = () => {
+const AddRecipeForm = ({setRecipes, recipes}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [procedure, setProcedure] = useState('');
@@ -78,6 +79,8 @@ const AddRecipeForm = () => {
       })
       .then((data) => {
         console.log('Recipe added successfully:', data);
+        setRecipes([data,...recipes])
+
         // Optionally, perform any necessary actions after adding the recipe
       })
       .catch((error) => {
